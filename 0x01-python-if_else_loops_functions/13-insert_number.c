@@ -1,43 +1,54 @@
 #include "lists.h"
 
 /**
- * insert_node - Inserts a number into a sorted singly-linked list.
- * @head: A pointer the head of the linked list.
- * @number: The number to insert.
- * Return: 0 If the function fails or pointer to the new node.
+ * insert_node - inserts number to linked lists(sorted)
+ * @head: double pointer to head
+ * @number: number to  be inserted
+ * Return: address of new node (success) or NULL(fail)
  */
+
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *node = *head, *new;
+	listint_t *current = *head;
+	listint_t *new_node = malloc(sizeof(listint_t));
 
-	new = malloc(sizeof(listint_t));
-	if (new == NULL)
+	if (new_node == NULL)
 		return (NULL);
-	new->n = number;
-
-	if (node == NULL || node->n >= number)
+	while (current->next != NULL)
 	{
-		new->next = node;
-		*head = new;
-		return (new);
+		/*insert at beginning*/
+		if (number < current->n)
+		{
+			new_node->next = *head;
+			*head = new_node;
+			new_node->n = number;
+			return (new_node);
+		}
+		/*duplicate numbers*/
+		else if (number == current->n)
+		{
+			new_node->n = number;
+			new_node->next = current->next;
+			current->next = new_node;
+			return (new_node);
+		}
+		/*insert at middle*/
+		if ((number > current->n) && (current->next->n > number))
+		{
+			new_node->next = current->next;
+			new_node->n = number;
+			current->next = new_node;
+			return (*head);
+		}
+		current = current->next;
+	}
+	if (number > current->n)
+	{
+		current->next = new_node;
+		new_node->n = number;
+		new_node->next = NULL;
+		return (new_node);
 	}
 
-	while (node && node->next && node->next->n < number)
-		node = node->next;
-
-	new->next = node->next;
-	node->next = new;
-
-	return (new);
+	return (NULL);
 }
-
-
-100-print_tehbapla.py
-
-#!/usr/bin/python3
-for i in range(ord('z'), ord('a') - 1, -1):
-    if i % 2 == 0:
-        diff = 0
-    else:
-        diff = 32
-    print('{}'.format(chr(i - diff)), end='')
