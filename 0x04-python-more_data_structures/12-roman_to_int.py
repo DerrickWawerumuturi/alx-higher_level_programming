@@ -1,6 +1,11 @@
 #!/usr/bin/python3
-def roman_dict(char):
-    if char ==  'I':
+"""
+Return value of char
+"""
+
+
+def roman_value(char):
+    if char == 'I':
         return 1
     if char == 'V':
         return 5
@@ -14,17 +19,26 @@ def roman_dict(char):
         return 500
     if char == 'M':
         return 1000
-    return -1
+        return -1
+
+
+"""
+convert roman to int
+"""
+
 
 def roman_to_int(roman_string):
-    if not isinstance(roman_string, str) or roman_string is None:
-        return (0)
-    result = 0
-
-    for i in range(len(roman_string) - 1):
-        if i < (len(roman_string)) and roman_dict(roman_string[i]) < roman_dict(roman_string[i + 1]):
-                result -= roman_dict(roman_string[i])
+    if (not roman_string) or \
+            type(roman_string) != str:
+        return None
+    number = 0
+    for i in range(len(roman_string)):
+        if i + 1 < len(roman_string):
+            if roman_value(roman_string[i]) \
+                    >= roman_value(roman_string[i + 1]):
+                number += roman_value(roman_string[i])
+            else:
+                number -= roman_value(roman_string[i])
         else:
-            result += roman_dict(roman_string[i])
-    result += roman_dict(roman_string[-1])
-    return (result)
+            number += roman_value(roman_string[i])
+    return number
