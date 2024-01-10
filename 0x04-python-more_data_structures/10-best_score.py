@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 def best_score(a_dictionary):
-    if a_dictionary:
-        max_key = max(a_dictionary, key=lambda k: a_dictionary[k], default=None)
-        return (max_key)
-    else:
+    if not a_dictionary:
         return (None)
+    return (max(a_dictionary, key=a_dictionary.get))
