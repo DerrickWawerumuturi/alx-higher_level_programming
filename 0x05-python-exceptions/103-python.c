@@ -1,4 +1,4 @@
-#include <Python.h>
+#include "Python.h"
 
 void print_python_list(PyObject *p) {
     if (!PyList_Check(p)) {
@@ -17,7 +17,6 @@ void print_python_list(PyObject *p) {
         printf("Element %ld: %s\n", i, Py_TYPE(PyList_GetItem(p, i))->tp_name);
     }
 }
-#include <Python.h>
 
 void print_python_bytes(PyObject *p) {
     if (!PyBytes_Check(p)) {
@@ -41,7 +40,6 @@ void print_python_bytes(PyObject *p) {
     }
     printf("\n");
 }
-#include <Python.h>
 
 void print_python_float(PyObject *p) {
     if (!PyFloat_Check(p)) {
