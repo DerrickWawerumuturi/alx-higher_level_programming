@@ -1,46 +1,40 @@
 #!/usr/bin/python3
-"""Square class defination"""
+"""Daclares a square"""
 
 
 class Square:
-    """square body"""
+    """Represents a square"""
 
     def __init__(self, size=0):
-        """square contructor 
-        Args: size: length of a side of Square
+        """Initialize a square
+            Args:
+                size: size of square
         """
-        self.__size = size
+        self.size = size
 
     @property
     def size(self):
-        """"The propery of size as the length 
-        of a side of Square
-        Raises:
-            TypeError: if size != int
-            ValueErrorr: if size < 0
-        """
+        """Get the size of the square"""
         return self.__size
 
     @size.setter
     def size(self, value):
+        """Set the size of the square"""
         if not isinstance(value, int):
-            raise TypeError('size must be an integer')
-        if value < 0:
-            raise ValueError('size must be >= 0')
+            raise TypeError("size must be an integer")
+        elif value < 0:
+            raise ValueError("size must be >= 0")
         self.__size = value
 
     def area(self):
-        """Get the area instance to comparators"""
-        return self.__size * self.__size
+        """Area of the square
+            Return:
+                Area of the square
+        """
+        return self._Square__size ** 2
 
-    def __le__(self, other):
-        return self.area() <= other.area()
-
-    def __lt__(self, other):
-        return self.area() < other.area()
-
-    def __ge__(self, other):
-        return self.area() >= other.area()
+    def __eq__(self, other):
+        return self.area() == other.area()
 
     def __ne__(self, other):
         return self.area() != other.area()
@@ -48,5 +42,11 @@ class Square:
     def __gt__(self, other):
         return self.area() > other.area()
 
-    def __eq__(self, other):
-        return self.area() == other.area()
+    def __ge__(self, other):
+        return self.area() >= other.area()
+
+    def __lt__(self, other):
+        return self.area() < other.area()
+
+    def __le__(self, other):
+        return self.area() <= other.area()
