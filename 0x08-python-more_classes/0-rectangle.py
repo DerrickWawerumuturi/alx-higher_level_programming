@@ -1,6 +1,10 @@
 #!/usr/bin/python3
-    """ Defines an empty Rectangle class
-    """
-    class Rectangle:
-        """ empty Class """
-        pass
+
+"""
+Defining an empty Rectangle class
+"""
+
+
+class Rectangle:
+    """Emtpy Class"""
+    pass
