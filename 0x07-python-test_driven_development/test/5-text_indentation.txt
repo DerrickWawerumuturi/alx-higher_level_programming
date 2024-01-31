@@ -1,0 +1,19 @@
+Test for 5-text_indentation.py file
+
+Using 'text_indentation' function
+
+Test case for function:
+
+    >>>  __import__('5-text_indentation').text_indentation
+
+Test_1: if text is not a string
+
+    >>> text_indentation(7)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+Test_2: if text is empty
+
+    >>> text_indentation()
+    Traceback (most recent call last):
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
