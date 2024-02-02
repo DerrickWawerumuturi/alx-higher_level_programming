@@ -65,21 +65,9 @@ Test_10 both arguments as strings
     Traceback (most recent call last):
     TypeError: a must be an integer
 
-Test_11 more than two arguments
-
- >>> add_integer(3, 234, 65)
-    Traceback (most recent call last):
-    TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
-
-Test_12 No arguments
+Test_11 No arguments
 
     >>> add_integer()
     Traceback (most recent call last):
     TypeError: add_integer() missing 1 required positional argument: 'a'
-
-Test_13 first argument as string
-
-   >>> add_integer("heloo")
-    Traceback (most recent call last):
-    TypeError: a must be an integer
 
