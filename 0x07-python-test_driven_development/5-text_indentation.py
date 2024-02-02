@@ -1,35 +1,23 @@
 #!/usr/bin/python3
+"""My string module performs operations on strings
 """
-defines a function
-"""
+
+
 def text_indentation(text):
+    """Prints 2 new lines after each . ? or : character in a string
+
+    Args:
+        text (str): The text to perform operation on
     """
-    defines a function that splits  a string
-    purpose: prints a text with 2 new lines 
-    after each of these characters: ., ? and :
-    
-    Parameter: 
-    text: stirng to be split
-    
-    Exception:
-    
-    TypeError: if text is not a string
-    """
-    
     if not isinstance(text, str):
         raise TypeError("text must be a string")
-    
-    split_text  = ""
-    
-    newline_char = {'.', '?', ':'}
-    
-    for char in text:
-        split_text += char
-        
-        if char in newline_char:
-            split_text += '\n\n'
-            
-    lines = [lines.strip() for line in split_text('\n')]
-    
-    for line in lines:
-        print(line)
+    operators = ['.', '?', ':']
+    new_str = ""
+    for letter in text:
+        new_str += letter
+        if letter in operators:
+            new_str += "\n"
+            print(new_str.strip(" "))
+            new_str = ""
+    if letter not in operators:
+        print(new_str.strip(" "), end="")
