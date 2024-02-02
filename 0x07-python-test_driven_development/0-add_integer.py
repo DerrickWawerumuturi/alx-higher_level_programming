@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/usr/bin/python3
 
 def add_integer(a, b=98):
@@ -21,7 +20,6 @@ def add_integer(a, b=98):
         raise TypeError("b must be an integer")
 
     return int(a) + int(b)
-=======
 #!/usr/bin/python3
 """My addition module
 
@@ -39,4 +37,4 @@ def add_integer(a, b=98):
     if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
     return int(a) + int(b)
->>>>>>> cca8ce93ee76cfdf7338b7958dbc375e40c013e1
+
