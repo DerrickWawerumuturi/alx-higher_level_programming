@@ -1,18 +1,10 @@
 #!/usr/bin/python3
-
-"""
-Defines an class
-"""
+"""Defines class BaseGeometry."""
 
 
 class BaseGeometry:
-    """
-    define a class body with a public instance method
-    """
-    
+    """Class body."""
+
     def area(self):
-        """
-        raises:
-        exception : area() is not implemented
-        """
+        """Not implemented."""
         raise Exception("area() is not implemented")
