@@ -3,6 +3,8 @@
 """
 Defines an class
 """
+
+
 class BaseGeometry:
     """
     define a class body with a public instance method
