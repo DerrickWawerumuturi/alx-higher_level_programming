@@ -8,6 +8,6 @@ def load_from_json_file(filename):
     with open(filename, "r", encoding="utf-8") as file:
         jsonfile = file.read()
         
-        myobj = json.loads(jsonfile)
+        myobj = json.load(jsonfile)
         
         return  myobj
