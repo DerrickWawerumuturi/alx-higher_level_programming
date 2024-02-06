@@ -1,18 +1,24 @@
 #!/usr/bin/python3
-# 7-add_item.py
-# Simon  Tagbor <simontagbor360@gmail.com>
-""" create a list from all arguments """
+"""import json for encoding and decoding the json file
+import sys to help parse through the arguments
+import os.path to help check if the file exists"""
+import json
+import os.path
 import sys
 
+"""importing the necessary modules to help in craeting object from JSON file and write an object text file using json representation"""
+enc = __import__('5-save_to_json_file').save_to_json_file
+dec = __import__('6-load_from_json_file').load_from_json_file
 
-if __name__ == "__main__":
-    save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
-    load_from_json_file = \
-        __import__('6-load_from_json_file').load_from_json_file
+my_list = []
+filename = "add_item.json"
 
-    try:
-        arguments = load_from_json_file("add_item.json")
-    except FileNotFoundError:
-        arguments = []
-    arguments.extend(sys.argv[1:])
-    save_to_json_file(arguments, "add_item.json")
+if os.path.isfile(filename):
+    """decode the json file if the file exists"""
+    my_list = dec(filename)
+
+"""loop through the list of arguments"""
+for arg in sys.argv[1:]:
+    my_list.append(arg)
+
+enc(my_list, "add_item.json")
