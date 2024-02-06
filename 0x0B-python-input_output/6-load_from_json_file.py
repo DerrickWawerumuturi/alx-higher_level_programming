@@ -1,13 +1,9 @@
 #!/usr/bin/python3
+"""load from json"""
 import json
-""" define a json to string module
-"""
+
 
 def load_from_json_file(filename):
-    """ loads json to file"""
-    with open(filename, "r", encoding="utf-8") as file:
-        jsonfile = file.read()
-        
-        myobj = json.load(jsonfile)
-        
-        return  myobj
+    """load from json to file"""
+    with open(filename, encoding="utf-8") as file_loaded:
+        return json.load(file+loaded)
