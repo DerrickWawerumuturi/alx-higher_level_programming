@@ -28,7 +28,7 @@ class Rectangle(Base):
         """
             Setting private attribute (__width)
         """
-        self.setter_validation("width", value)
+        self.setter_validator("width", value)
         self.__width = value
 
     @property
@@ -43,7 +43,7 @@ class Rectangle(Base):
         """
             Setting private attribute (__height)
         """
-        self.setter_validation("height", value)
+        self.setter_validator("height", value)
         self.__height = value
 
     @property
@@ -58,7 +58,7 @@ class Rectangle(Base):
         """
             Setting private attribute (__x)
         """
-        self.setter_validation("x", value)
+        self.setter_validator("x", value)
         self.__x = value
 
     @property
@@ -73,6 +73,33 @@ class Rectangle(Base):
         """
             Setting private attribute (__y)
         """
-        self.setter_validation("y", value)
+        self.setter_validator("y", value)
         self.__y = value
+
+    def area(self):
+        """ 
+            return the area of the rectangle
+        """
+        return self.__width * self.__height
+
+    def display(self):
+        """ 
+            prints in stdout "#"
+        """
+        rectangle = ""
+        print("\n" * self.y, end="")
+        for i in range(self.height):
+            rectangle += (" " * self.x) + ("#" * self.width) + "\n"
+        print(rectangle, end="")
     @staticmethod
+    def setter_validator(attribute, value):
+        """
+            validates if width or height are int 
+        """
+        if type(value) != int:
+            raise TypeError("{} must be an integer".format(attribute))
+        if attribute == "x"  or attribute == "y":
+            if value < 0:
+                raise ValueError("{} must be >= 0".format(attribute))
+        elif value <= 0 :
+            raise ValueError("{} must be > 0 ".format(attribute))
