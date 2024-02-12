@@ -97,30 +97,6 @@ class Rectangle(Base):
             Updates the arguments props in the class
         """
         if len(args) == 0:
-            dict = kwargs.keys()
-            if "height" in dict:
-                self.height = kwargs['height']
-            if "width" in dict:
-                self.width = kwargs['width']
-            if "x" in dict:
-                self.height = kwargs['x']
-            if "y" in dict:
-                self.y = kwargs['y']
-            if "id" in dict:
-                self.id = kwargs['id']
-        else:
-            if len(args) > 0:
-               self.id = args[0] 
-            if len(args) > 1:
-               self.width = args[1] 
-            if len(args) > 2:
-               self.height = args[2] 
-            if len(args) > 3:
-               self.x = args[3]
-            if len(args) >4:
-                self.y = args[4]
-    @staticmethod
-    def setter_validator(attribute, value):
             for key, val in kwargs.items():
                 self.__setattr__(key, val)
             return
