@@ -10,7 +10,7 @@ class TestSquare(unittest.TestCase):
     """Define unit test for Square model"""
 
     def test_initialization_success(self):
-        s1 = Square(5)
+        s1 = Square(13)
         s2 = Square(10)
         self.assertEqual(s1.id, 5)
         self.assertEqual(s2.id, 6)
