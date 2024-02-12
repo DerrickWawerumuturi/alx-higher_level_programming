@@ -20,24 +20,6 @@ class Square(Rectangle):
         """
         return self.width
 
-  @property
-  def size(self):
-    """
-    define a getter for the size attribute
-    """
-    return self.width
-  @size.setter
-  def size(self, value):
-    """
-    define a setter for the size
-    """
-    if type(value) is not int:
-      raise  TypeError("width must be an integer")
-    if value <= 0:
-      raise ValueError("width must be > 0")
-    self.width = value
-    self.height = value
-
     @size.setter
     def size(self, value):
         """module Square height and width
