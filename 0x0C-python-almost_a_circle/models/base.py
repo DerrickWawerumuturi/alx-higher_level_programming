@@ -22,26 +22,26 @@ class Base:
             self.id = Base.__nb_objects
     @staticmethod
     def to_json_string(list_dictionaries):
-    """
-    returns a JSON string rep of a list of dictionaries
-    """
-    if list_dictionaries is None or list_dictionaries == [] :
-        return "[]"
-    else:
-        return json.dumps(list_dictionaries)
+        """
+        returns a JSON string rep of a list of dictionaries
+        """
+        if list_dictionaries is None or list_dictionaries == [] :
+            return "[]"
+        else:
+            return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
-    """ 
-    writes the JSON string rep of list_obj to a file
-    """
-    filename = cls.__name__+ ".json"
-    with open(filename, "w") as jsonfile:
-        if list_objs is None:
-            jsonfile.write("[]")
-        else:
-            list_dicts = [o.to_dictionary() for o in list_objs]
-            jsonfile.write(Base.to_json_string(list_dicts))
+        """ 
+        writes the JSON string rep of list_obj to a file
+        """
+        filename = cls.__name__+ ".json"
+        with open(filename, "w") as jsonfile:
+            if list_objs is None:
+                jsonfile.write("[]")
+            else:
+                list_dicts = [o.to_dictionary() for o in list_objs]
+                jsonfile.write(Base.to_json_string(list_dicts))
     @staticmethod
     def from_json_string(json_string):
         """
@@ -91,7 +91,7 @@ class Base:
                 for obj in list_objs:
                     write.writerow(obj.to_dictionary())
 
-    @clasmethod
+    @classmethod
     def load_from_file_csv(cls):
         """Return a list of class instantiated from a CSV file.
         """
