@@ -133,3 +133,13 @@ class Rectangle(Base):
                 raise ValueError("{} must be >= 0".format(attribute))
         elif value <= 0 :
             raise ValueError("{} must be > 0 ".format(attribute))
+
+
+    def to_dictionary(self):
+        rectDict = {}
+        rectDict.update({'x' : self.x})
+        rectDict.update({'y' : self.y})
+        rectDict.update({'id' : self.id})
+        rectDict.update({'height' : self.height})
+        rectDict.update({'width' : self.width})
+        return rectDict
