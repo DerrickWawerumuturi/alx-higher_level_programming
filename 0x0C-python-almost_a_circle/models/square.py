@@ -67,8 +67,10 @@ class Square(Rectangle):
       """
       returns a dictionary rep of a Square
       """
-      squareDict = super().to_dictionary()
-      del squareDict['height']
-      del sqaureDict['width]
-      squareDict.update({'size': self.size})
-      return squareDict
+      return {
+        "id" : self.id,
+        "size": self.size,
+        "x": self.x,
+        "y" : self.y
+      }
+    
