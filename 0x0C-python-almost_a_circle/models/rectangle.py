@@ -28,7 +28,7 @@ class Rectangle(Base):
         """
             Setting private attribute (__width)
         """
-        self.setter_validator("width", value)
+        self.setter_validation("width", value)
         self.__width = value
 
     @property
@@ -43,7 +43,7 @@ class Rectangle(Base):
         """
             Setting private attribute (__height)
         """
-        self.setter_validator("height", value)
+        self.setter_validation("height", value)
         self.__height = value
 
     @property
@@ -58,7 +58,7 @@ class Rectangle(Base):
         """
             Setting private attribute (__x)
         """
-        self.setter_validator("x", value)
+        self.setter_validation("x", value)
         self.__x = value
 
     @property
@@ -73,31 +73,29 @@ class Rectangle(Base):
         """
             Setting private attribute (__y)
         """
-        self.setter_validator("y", value)
+        self.setter_validation("y", value)
         self.__y = value
 
     def area(self):
-        """ 
-            return the area of the rectangle
         """
-        return self.__width * self.__height
+            Returns the area of the rectangle (height * width)
+        """
+        return (self.height * self.width)
 
     def display(self):
-        """ 
-            prints in stdout "#"
+        """
+            Prints to stdout the representation of the rectangle
         """
         rectangle = ""
         print("\n" * self.y, end="")
         for i in range(self.height):
             rectangle += (" " * self.x) + ("#" * self.width) + "\n"
         print(rectangle, end="")
-    def __str__(self):
-        """ 
-            returns a string 
-        """
-        return ("[Rectangle] ({}) {}/{} - {}/{}".format
-                (self.id, self.__x, self.__y, self.__width, self.__height))
+
     def update(self, *args, **kwargs):
+        """
+            Updates the arguments props in the class
+        """
         if len(args) == 0:
             dict = kwargs.keys()
             if "height" in dict:
@@ -123,23 +121,38 @@ class Rectangle(Base):
                 self.y = args[4]
     @staticmethod
     def setter_validator(attribute, value):
-        """
-            validates if width or height are int 
-        """
-        if type(value) != int:
-            raise TypeError("{} must be an integer".format(attribute))
-        if attribute == "x"  or attribute == "y":
-            if value < 0:
-                raise ValueError("{} must be >= 0".format(attribute))
-        elif value <= 0 :
-            raise ValueError("{} must be > 0 ".format(attribute))
-
+            for key, val in kwargs.items():
+                self.__setattr__(key, val)
+            return
+        try:
+            self.id = args[0]
+            self.width = args[1]
+            self.height = args[2]
+            self.x = args[3]
+            self.y = args[4]
+        except IndexError:
+            pass
 
     def to_dictionary(self):
-        rectDict = {}
-        rectDict.update({'x' : self.x})
-        rectDict.update({'y' : self.y})
-        rectDict.update({'id' : self.id})
-        rectDict.update({'height' : self.height})
-        rectDict.update({'width' : self.width})
-        return rectDict
+        """
+            Returns a dictionary representation of this class
+        """
+        return {'x': getattr(self, "x"),
+                'y': getattr(self, "y"),
+                'id': getattr(self, "id"),
+                'height': getattr(self, "height"),
+                'width': getattr(self, "width")}
+
+    @staticmethod
+    def setter_validation(attribute, value):
+        if type(value) != int:
+            raise TypeError("{} must be an integer".format(attribute))
+        if attribute == "x" or attribute == "y":
+            if value < 0:
+                raise ValueError("{} must be >= 0".format(attribute))
+        elif value <= 0:
+            raise ValueError("{} must be > 0".format(attribute))
+
+    def __str__(self):
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y,
+                                                       self.width, self.height)

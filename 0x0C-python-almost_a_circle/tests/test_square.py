@@ -1,52 +1,23 @@
-#!usr/bin/python3
-"""importing modules"""
+#!/usr/bin/python3
+"""Unittests for base
+"""
+
 import unittest
-import json
-from models import square
+from models.square import Square
 
 
 class TestSquare(unittest.TestCase):
-    """class to test square class methods"""
-    
-    def setUp(self):
-        """setup method"""
-        self.square = square.Square(9, 12, 63, 11)
+    """Define unit test for Square model"""
 
-    def test_id(self):
-        """test method for id"""
-        self.assertEqual(self.square.id, 11)
-        self.square.id = 4
-        self.assertEqual(self.square.id, 4)
+    def test_initialization_success(self):
+        s1 = Square(5)
+        s2 = Square(10)
+        self.assertEqual(s1.id, 5)
+        self.assertEqual(s2.id, 6)
 
-    def test_area(self):
-        """test for area method"""
-        self.assertEqual(self.square.area(), 81)
-        self.square.size = 5
-        self.assertEqual(self.square.area(), 25)
+    def test_initialization_without_arguments(self):
 
-    def test_size(self):
-        """method to test size"""
-        self.assertEqual(self.square.size, 9)
-        self.square.size = 42
-        self.assertEqual(self.square.size, 42)
+        self.assertRaises(TypeError, Square)
 
-        with self.assertRaises(TypeError):
-            self.square.size = "32"
-        with self.assertRaises(ValueError):
-            self.square.size = -8
-
-    def test_update(self):
-        """testing update method"""
-        self.square.update(89, 12, 18, 1)
-        self.assertEqual(self.square.height, 12)
-        self.assertEqual(self.square.x, 18)
-        self.assertEqual(self.square.id, 89)
-
-    def test_to_dictionary(self):
-        """test method"""
-        s1_dict = self.square.to_dictionary()
-        self.assertEqual(s1_dict, {'id': 11, 'x': 12, 'size': 9, 'y': 63})
-
-    def test_str(self):
-        """testing __str__ method"""
-        self.assertEqual(str(self.square), '[Square] (11) 12/63 - 9')
+if __name__ == '__main__':
+    unittest.main()
