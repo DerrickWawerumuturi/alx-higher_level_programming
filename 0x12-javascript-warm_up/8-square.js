@@ -4,7 +4,7 @@ const args = process.argv;
 
 if (args[2] < 0) {
   process.exit();
-} else if (typeof args[2] === 'number') {
+} else if (isNaN(args[2])) {
   console.log('Missing size');
 } else {
   for (let i = 0; i < args[2]; i++) {
