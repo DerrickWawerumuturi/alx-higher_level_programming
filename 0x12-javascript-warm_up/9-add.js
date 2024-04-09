@@ -7,8 +7,7 @@ function add (a, b) {
 }
 
 if (args[2] && args[3]) {
-  let total = add(args[2], args[3]);
-  console.log(total);
+  console.log(add(args[2], args[3]));
 } else {
   console.log('NaN');
 }
