@@ -1,23 +1,9 @@
 #!/usr/bin/node
 
-const args = process.argv;
-const array = [];
-for (let i = 2; i < args.length; i++) {
-  array.push(parseInt(args[i]));
+if (process.argv.length <= 3) {
+  console.log('0');
+} else {
+  const arr = process.argv.slice(2).map(Number);
+  const second = arr.sort(function (a, b) { return b - a; })[1];
+  console.log(second);
 }
-
-function second (arr) {
-  if (args[2] === undefined) {
-    console.log(0);
-  } else if (args.length === 3) {
-    console.log(0);
-  } else {
-    arr.sort();
-
-    if (arr[arr.length - 2] !== arr[arr.length - 1]) {
-      console.log(arr[arr.length - 2]);
-    }
-  }
-}
-
-second(array);
