@@ -2,36 +2,33 @@
 
 class Rectangle {
   constructor (w, h) {
-    if ((w > 0) && (h >0)) {	
+    if ((w > 0) && (h > 0)) {
       this.width = w;
       this.height = h;
     }
   }
-  
+
   print () {
-    for (let row = 0; row <= this.width; row++) {
+    for (let row = 0; row < this.height; row++) {
       let line = '';
-      for (let col = 0; col <= this.height; col++ {
+      for (let col = 0; col < this.width; col++) {
         line += 'X';
       }
-      console.log(line); 	
+      console.log(line);
     }
   }
 
   rotate () {
-    for (let row = 0; row <= this.height; row++) {
-      let line = '';
-      for (let col = 0; col <= this.width; col++) {
-        line += 'X';
-      }
-      console.log(line);	    
-    }
+    const rot = this.width;
+    this.width = this.height;
+    this.height  = rot;
   }
 
   double () {
-    let n = 2 * print();
-    console.log(n);
+    this.width *= 2;
+    this.height *= 2;
   }
 }
 
-module.exports  = Rectangle;
+module.exports = Rectangle;
+~
