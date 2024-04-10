@@ -13,8 +13,9 @@ class Rectangle {
       for (let col = 0; col < this.width; col++) {
         line += 'X';
       }
+      console.log(line);
+    }
   }
-  console.log(line);
 }
 
 module.exports = Rectangle;
