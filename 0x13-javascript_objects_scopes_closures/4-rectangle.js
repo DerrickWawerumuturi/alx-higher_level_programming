@@ -21,7 +21,11 @@ class Rectangle {
   rotate () {
     const rot = this.width;
     this.width = this.height;
+<<<<<<< HEAD
     this.height  = rot;	  
+=======
+    this.height  = rot;
+>>>>>>> 6d53da6d54f2265d92508bafd5a90403c911a15f
   }
 
   double () {
@@ -31,3 +35,7 @@ class Rectangle {
 }
 
 module.exports = Rectangle;
+<<<<<<< HEAD
+=======
+~
+>>>>>>> 6d53da6d54f2265d92508bafd5a90403c911a15f
