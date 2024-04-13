@@ -1,25 +1,23 @@
 #!/usr/bin/python3
-"""script that lists all states from the database hbtn_0e_0_usa
-Use (source maintest/0-select_states.sql) to load into the MySQL Server
-Execute by (./1-select_states.py username password database_name)
-"""
-if __name__ == "__main__":
-    import MySQLdb
-    from sys import argv
+"""script that lists all states with a name starting with N (upper N)"""
 
-    db = MySQLdb.connect(
-        host='localhost',
-        user=argv[1],
-        passwd=argv[2],
-        db=argv[3],
-        port=3306
-    )
-    ptr = db.cursor()
-    ptr.execute('SELECT * FROM states '
-                'WHERE states.name LIKE BINARY "N%" '
-                'ORDER BY states.id ASC')
-    rows = ptr.fetchall()
+if __name__ == "__main__":
+    import sys
+    import MySQLdb
+
+    dbUser = sys.argv[1]
+    pswd = sys.argv[2]
+    dbName = sys.argv[3]
+
+    """connect w our database"""
+    db = MySQLdb.connect(host='localhost', user=dbUser, passwd=pswd, db=dbName)
+
+    cur = db.cursor()
+    """execute our query"""
+    cur.execute("SELECT * FROM states WHERE name LIKE 'N%'")
+
+    rows = cur.fetchall()
     for row in rows:
         print(row)
-    ptr.close()
+    cur.close()
     db.close()
