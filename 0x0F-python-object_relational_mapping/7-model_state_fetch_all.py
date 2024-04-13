@@ -1,17 +1,20 @@
 #!/usr/bin/python3
-"""Start link class to table in database
-"""
+"""script that lists all State objects from a database"""
 import sys
 from model_state import Base, State
-from sqlalchemy import (create_engine)
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-
 if __name__ == "__main__":
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
-    Base.metadata.create_all(engine)
+    dbUser = sys.argv[1]
+    dbPwd = sys.argv[2]
+    dbName = sys.argv[3]
+
+    engine = create_engine(f"mysql://{dbUser}:{dbPwd}@localhost:3306/{dbName}")
     Session = sessionmaker(bind=engine)
+    # instance of Session
     session = Session()
-    for instance in session.query(State).order_by(State.id):
-        print(instance.id, instance.name, sep=": ")
+
+    results = session.query(State).order_by(State.id.asc()).all()
+    for item in results:
+        print(f"{item.id}: {item.name}")
