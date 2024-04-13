@@ -1,19 +1,22 @@
 #!/usr/bin/python3
-"""this is a script that lists all states from the database hbtn_0e_0_usa """
-
-#module importations
-import MySQLdb
-import sys
-
-
-"""we are not to let our code be executed when imported"""
+"""script that lists all states from a database"""
 if __name__ == "__main__":
+    import sys
+    import MySQLdb
 
-    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
-                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    dbUser = sys.argv[1]
+    pswd = sys.argv[2]
+    dbName = sys.argv[3]
+
+    """connect w our database"""
+    db = MySQLdb.connect(host='localhost', user=dbUser, passwd=pswd, db=dbName)
+
     cur = db.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    """execute our query"""
+    cur.execute("SELECT * FROM states ORDER BY states.id ASC")
+    """get result of previous execution"""
     rows = cur.fetchall()
+    """rows will be a list of tuples"""
     for row in rows:
         print(row)
     cur.close()
