@@ -1,16 +1,26 @@
 #!/usr/bin/python3
-"""  lists all states from the database hbtn_0e_0_usa """
-import MySQLdb
-import sys
-
-
+"""script that takes in an argument and displays
+all values in the states table """
 if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
-                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    import sys
+    import MySQLdb
+
+    dbUser = sys.argv[1]
+    pswd = sys.argv[2]
+    dbName = sys.argv[3]
+    stateName = sys.argv[4]
+
+    """make the connection"""
+    db = MySQLdb.connect(host='localhost', user=dbUser, passwd=pswd, db=dbName)
+    query = "SELECT * FROM states WHERE states.name= BINARY'{}' \
+        ORDER BY states.id ASC".format(stateName)
+
     cur = db.cursor()
-    cur.execute("SELECT * FROM states WHERE name LIKE BINARY '{}'"
-                .format(sys.argv[4]))
+    """execute query"""
+    cur.execute(query)
+    """get results"""
     rows = cur.fetchall()
+    """rows will be a list of tuples"""
     for row in rows:
         print(row)
     cur.close()
