@@ -1,18 +1,21 @@
 #!/usr/bin/python3
-"""  lists all states from the database hbtn_0e_0_usa """
-import MySQLdb
-import sys
-
+"""script that takes in the name of a state as an
+argument and lists all cities of that state,"""
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
-                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    import sys
+    import MySQLdb
+
+    dbUser = sys.argv[1]
+    pswd = sys.argv[2]
+    dbName = sys.argv[3]
+    stateName = sys.argv[4]
+
+    """make a connection w our db"""
+    db = MySQLdb.connect(host='localhost', user=dbUser, passwd=pswd, db=dbName)
+
     cur = db.cursor()
-    cur.execute("""SELECT cities.name FROM
-                cities INNER JOIN states ON states.id=cities.state_id
-                WHERE states.name=%s""", (sys.argv[4],))
-    rows = cur.fetchall()
-    tmp = list(row[0] for row in rows)
-    print(*tmp, sep=", ")
-    cur.close()
-    db.close()
+    cur.execute("SELECT id FROM states WHERE name=%s", stateName)
+
+    res = cur.fetchonce()
+    cur.execute("SELECT name FROM cities WHERE id=%s", )
