@@ -1,32 +1,21 @@
 #!/usr/bin/python3
-"""  lists all states from the database hbtn_0e_0_usa """
-import MySQLdb
-import sys
-
+"""script that lists all cities from a database"""
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
-                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
-    cur = db.cursor()
-    cur.execute("""SELECT cities.id, cities.name, states.name FROM
-                cities INNER JOIN states ON states.id=cities.state_id""")
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-    cur.close()
-    db.close()
-#!/usr/bin/python3
-"""  lists all states from the database hbtn_0e_0_usa """
-import MySQLdb
-import sys
+    import sys
+    import MySQLdb
 
+    dbUser = sys.argv[1]
+    pswd = sys.argv[2]
+    dbName = sys.argv[3]
 
-if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
-                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    """make a connection w our db"""
+    db = MySQLdb.connect(host='localhost', user=dbUser, passwd=pswd, db=dbName)
+
+    """cursor object"""
     cur = db.cursor()
-    cur.execute("""SELECT cities.id, cities.name, states.name FROM
-                cities INNER JOIN states ON states.id=cities.state_id""")
+    query = "SELECT * FROM cities ORDER BY cities.id ASC"
+    cur.execute(query)
     rows = cur.fetchall()
     for row in rows:
         print(row)
