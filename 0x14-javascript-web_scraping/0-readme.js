@@ -17,5 +17,4 @@ async function readFileContent() {
         console.error(err);
     }
 }
-
 readFileContent();
