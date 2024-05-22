@@ -13,6 +13,22 @@ request(base_url, (error, res, body) => {
         console.error("Error is: ", error);
     }
 
+    const userTasks  = {}
     const tasks = JSON.parse(body);
-    console.log(typeof tasks);
-})
+
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        if (task.completed === true) {
+            if (userTasks[task.userId]) {
+                userTasks[task.userId]++;
+            } else {
+                userTasks[task.userId] = 1;
+            }
+        }
+    }
+    const result = {};
+    for (const userId in userTasks) {
+        result[userId] = userTasks[userId];
+    }
+    console.log(result);
+});
