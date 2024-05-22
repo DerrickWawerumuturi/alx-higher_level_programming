@@ -1,5 +1,4 @@
 #!/usr/bin/node
-import { error } from "console";
 import request from "request";
 
 if (process.argv.length !== 3) {
