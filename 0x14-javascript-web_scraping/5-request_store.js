@@ -15,14 +15,12 @@ async function write_file() {
     request(url, (error, response, body) => {
         if (error) {
             console.log('Error: ', error);
-        }
-        
-            try {
-                writeFile(file_path, body, {encoding: 'utf-8'});
-                console.log(`Content saved to ${file_path}`);
-            } catch (error) {
-                console.error(error);
-        
+        } 
+        try {
+            writeFile(file_path, body, {encoding: 'utf-8'});
+            console.log(`Content saved to ${file_path}`);
+        } catch (error) {
+            console.error(error);
     }});
 };
 write_file();
