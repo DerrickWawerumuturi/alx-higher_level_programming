@@ -1,5 +1,4 @@
 #!/usr/bin/node
-import { error } from "console";
 import {writeFile} from "fs/promises"
 import { argv } from "process";
 
