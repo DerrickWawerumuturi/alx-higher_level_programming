@@ -1,42 +1,57 @@
 #!/usr/bin/node
 import request from "request";
-import { argv, exit } from "process";
 
-const url = process.argv[2];
-
-if (!url) {
-    console.error('Usage: node 6-completed_tasks.js <url>');
+const movieId = process.argv[2];
+if (!movieId) {
+    console.error('Usage: node 100-starwars_characters.js <movie_id>');
     process.exit(1);
 }
 
-request(url, (error, response, body) => {
+const baseUrl = 'https://swapi-api.alx-tools.com/api/films/';
+const movieUrl = `${baseUrl}${movieId}/`;
+
+request(movieUrl, (error, response, body) => {
     if (error) {
         console.error('Error:', error);
         return;
     }
 
-    let tasks;
+    if (response.statusCode !== 200) {
+        console.error(`Failed to fetch movie details. Status code: ${response.statusCode}`);
+        return;
+    }
+
+    let movie;
     try {
-        tasks = JSON.parse(body);
+        movie = JSON.parse(body);
     } catch (e) {
         console.error('Error parsing JSON:', e);
         return;
     }
 
-    const userTasks = {};
+    const characters = movie.characters;
 
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        if (task.completed === true) {
-            if (userTasks[task.userId]) {
-                userTasks[task.userId]++;
-            } else {
-                userTasks[task.userId] = 1;
+    characters.forEach((characterUrl) => {
+        request(characterUrl, (error, response, body) => {
+            if (error) {
+                console.error('Error:', error);
+                return;
             }
-        }
-    }
 
-    for (const userId in userTasks) {
-        console.log(`${userId} : ${userTasks[userId]}`);
-    }
+            if (response.statusCode !== 200) {
+                console.error(`Failed to fetch character details. Status code: ${response.statusCode}`);
+                return;
+            }
+
+            let character;
+            try {
+                character = JSON.parse(body);
+            } catch (e) {
+                console.error('Error parsing JSON:', e);
+                return;
+            }
+
+            console.log(character.name);
+        });
+    });
 });
